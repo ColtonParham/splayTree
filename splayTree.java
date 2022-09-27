@@ -101,13 +101,55 @@ class splayTree{
     ct++;
   }
 
-  //child to parent function to rotate the node 
-  public void childToParent(nodes child, nodes par)
+    //child to parent function to rotate the node <right>
+    // START OF FUNCTION
+    public void childToParentRight(nodes child, nodes par)
+    {
+      // changes from prior was changing left to right 
+      if ((child == null) || (par == null) || (par.right != child) || (child.parentNode != par))
+      {
+        // autofill screwed me <come back to this to finish reviewing notes> 
+        throw new RuntimeException("shit1");
+      }
+  
+      // cont from here - error checking first , marked as shit to keep track where each error is and is distinguishable 
+      if (par.parentNode != null)
+      {
+        // if that parent value already is equivalent to the left value it will applied to the child <TENATIVE>
+        if (par == par.parentNode.left)
+        {
+          // setting the parent node from the left to the child
+          par.parentNode.left = child;
+        }
+        else 
+        {
+          // setting the parent node from the right to the child
+          par.parentNode.right = child;
+        }
+      }
+  
+      // checking if the left child is null 
+      if (child.left != null)
+      {
+        child.left.parentNode = par;
+      }
+  
+      // <COME BACK TO THIS!> 
+      child.parentNode = par.parentNode;
+      par.parentNode = child;
+      par.right = child.right;
+      child.left = par;
+    }
+    // END OF FUNCTION <this is here to more or less keep track where i am. >
+
+
+  //child to parent function to rotate the node <left>
+  public void childToParentLeft(nodes child, nodes par)
   {
     if ((child == null) || (par == null) || (par.left != child) || (child.parentNode != par))
     {
       // autofill screwed me <come back to this to finish reviewing notes> 
-      throw new RuntimeException("shit");
+      throw new RuntimeException("shit2");
     }
 
 
@@ -133,6 +175,81 @@ class splayTree{
       child.right.parentNode = par;
     }
 
+    // <COME BACK TO THIS!> 
+    child.parentNode = par.parentNode;
+    par.parentNode = child;
+    par.left = child.right;
+    child.right = par;
+  }
+
+  // splay action or function
+  private void splayAction(nodes v)
+  {
+    while (v.parentNode != null)
+    {
+      // new parent node to be used here 
+      nodes par = v.parentNode;
+      // GO GRANPA GO! 
+      nodes grandpa = par.parentNode;
+
+      // about to daisy chain all of these conditions 
+      if (grandpa == null)
+      {
+        if (v == par.left)
+        {
+          // make the left child to parent 
+          childToParentLeft(v, par);
+        }
+        else
+        {
+          childToParentRight(v, par);
+        }
+      }
+      else
+      {
+        if (v == par.left)
+        {
+          if (par == grandpa.left)
+          {
+            childToParentLeft(par, grandpa);
+            childToParentLeft(v, par);
+          }
+          else 
+          {
+            childToParentLeft(v, v.parentNode);
+            childToParentRight(v, v.parentNode);
+          }
+        }
+        else
+        {
+          if (par == grandpa.left)
+          {
+            childToParentRight(v, v.parentNode);
+            childToParentLeft(v, v.parentNode);
+          }
+          else
+          {
+            childToParentRight(par, grandpa);
+            childToParentRight(v, par);
+          }
+        }
+      }
+    }
+    // setting the root point to the v once completed.
+    rootPoint = v;
+  }
+
+  public void remove(int elem)
+  {
+    // to be created locNode to locate the node 
+    nodes node = locNode(elem);
+    // remove function further 
+    remove(node);
+  }
+
+  private void remove(nodes node)
+  {
+    
   }
 
 }
