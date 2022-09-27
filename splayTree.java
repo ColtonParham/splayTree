@@ -61,13 +61,13 @@ class splayTree{
   public void insertElement(int elem)
   {
     nodes r = rootPoint;
-    nodes k = null;
+    nodes par = null;
     // while the rootPoint is not null 
     while (r != null)
     {
-      k = r;
+      par = r;
       // comparing the values being passed in <TENATIVE>
-      if (elem > k.element)
+      if (elem > par.element)
       {
         r = r.right;
       }
@@ -76,5 +76,63 @@ class splayTree{
         r = r.left;
       }
     }
+
+    r = new nodes();
+    // root element 
+    r.element = elem;
+    // apply to parent node
+    r.parentNode = par;
+
+    if (par == null)
+    {
+      rootPoint = r;
+    }
+    else if (elem > par.element)
+    {
+      par.right = r;
+    }
+    else
+    {
+      par.left = r;
+    }
+    // calling splay action here <tenative until created but needs to be here> 
+    splayAction(r);
+    // increment the count here 
+    ct++;
   }
+
+  //child to parent function to rotate the node 
+  public void childToParent(nodes child, nodes par)
+  {
+    if ((child == null) || (par == null) || (par.left != child) || (child.parentNode != par))
+    {
+      // autofill screwed me <come back to this to finish reviewing notes> 
+      throw new RuntimeException("shit");
+    }
+
+
+    // cont from here - error checking first , marked as shit to keep track where each error is and is distinguishable 
+    if (par.parentNode != null)
+    {
+      // if that parent value already is equivalent to the left value it will applied to the child <TENATIVE>
+      if (par == par.parentNode.left)
+      {
+        // setting the parent node from the left to the child
+        par.parentNode.left = child;
+      }
+      else 
+      {
+        // setting the parent node from the right to the child
+        par.parentNode.right = child;
+      }
+    }
+
+    // checking if the right child is null 
+    if (child.right != null)
+    {
+      child.right.parentNode = par;
+    }
+
+  }
+
 }
