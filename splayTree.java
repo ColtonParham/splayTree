@@ -247,9 +247,60 @@ class splayTree{
     remove(node);
   }
 
+  // remove node function
   private void remove(nodes node)
   {
-    
+    if (node == null)
+    {
+      return;
+    }
+
+    splayAction(node);
+    if ((node.left != null) && (node.right != null))
+    {
+      nodes minimum = node.left;
+      while (minimum.right != null)
+      {
+        minimum = minimum.right;
+      }
+      // setting the min right to be the node right 
+      minimum.right = node.right;
+      node.right.parentNode = minimum;
+      node.left.parentNode = null;
+      rootPoint = node.left;
+    }
+    else if (node.right != null)
+    {
+      // setting that right parent node to null and setting the rootPoint to that same value in accordinance to the left.
+      node.right.parentNode = null;
+      rootPoint = node.right;
+    }
+    else if (node.left != null)
+    {
+      // setting that left parent node to null and setting the rootPoint to that same value in accordinance to the left.
+      node.left.parentNode = null;
+      rootPoint = node.left;
+    }
+    else
+    {
+      // setting the root to null
+      rootPoint = null;
+    }
+    node.parentNode = null;
+    // setting the left node to null
+    node.left = null;
+    // setting the right node to null
+    node.right = null;
+    // setting the node to null val
+    node = null;
+    // decrement 
+    ct--;
   }
 
+  // function to return the # of nodes counter
+  public int nodeQty()
+  {
+    return ct;
+  }
+  
 }
