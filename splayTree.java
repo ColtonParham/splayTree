@@ -25,7 +25,7 @@ class nodes{
   // constructor for publicly viable vars/params
   public nodes(int elem, nodes l, nodes r, nodes parent)
   {
-    // reinstantiating 
+    // invoking the constructed fields/vars 
     this.element = elem;
     this.left = l;
     this.right = r;
@@ -35,13 +35,13 @@ class nodes{
 //END OF CONSTRUCTOR FOR NODE.....
 
 //setting up that splay tree...
-class splayTree{
+class splayTreeConfig{
   // rootPoint will be the effective root, and be set to null as needed
   private nodes rootPoint;
   // count variable set at 0 for it's starting point 
   private int ct = 0;
   // constructor for setting the value of the rootPoint
-  public splayTree()
+  public splayTreeConfig()
   {
     rootPoint = null;
   }
@@ -134,7 +134,7 @@ class splayTree{
         child.left.parentNode = par;
       }
   
-      // <COME BACK TO THIS!> 
+      // invoking child to be a parent and vice versa..
       child.parentNode = par.parentNode;
       par.parentNode = child;
       par.right = child.right;
@@ -303,4 +303,103 @@ class splayTree{
     return ct;
   }
   
+  // search func return t/f
+  public boolean searchFunction (int value)
+  {
+    return locNode(value) != null;
+  }
+
+  // function to find the node 
+  private nodes locNode(int elem)
+  {
+    // this will be updated as needed, set to null as the place holder 
+    nodes prevNodes = null; 
+    nodes v = rootPoint;
+    while (v != null)
+    {
+      prevNodes = v;
+      if (elem > v.element)
+      {
+        // if greater than the other element it will be updated to the right 
+        v = v.right;
+      }
+      else if (elem < v.element)
+      {
+        v = v.left;
+      }
+      else if (elem == v.element)
+      {
+        // if elem equals the v based element it will call the splayAction function to get passed through and solve for 
+        splayAction(v);
+        return v;
+      }
+    }
+    // if the previous node is not null it will do the splayAction function on the prevNodes, so if there is that value it will be placed accordingly
+    if (prevNodes != null)
+    {
+      splayAction(prevNodes);
+      return null;
+    }
+    return null;
+  }
+
+  // pre-order traversal 
+  public void preorderTraversal()
+  {
+    preorderTraversal(rootPoint);
+  }
+  private void preorderTraversal(nodes k)
+  {
+    if (k != null)
+    {
+      // THIS IS TENTATIVE AS THIS IS JUST SOMETHING EASY TO DISTINGUISH WHERE SOMETHING IS HAVING AN OUTPUT.
+      System.out.print(k.element + " - ");
+      preorderTraversal(k.left);
+      preorderTraversal(k.right);
+    }
+  }
+
+  // inOrderTraversal checking the correct subtree from the left <TENTATIVE> 
+  public void inOrderTraversal ()
+  {
+    inOrderTraversal(rootPoint);
+  }
+  private void inOrderTraversal(nodes k)
+  {
+    if (k != null)
+    {
+      inOrderTraversal(k.left);
+      // THIS IS TENTATIVE AS THIS IS JUST SOMETHING EASY TO DISTINGUISH WHERE SOMETHING IS HAVING AN OUTPUT.
+      System.out.print(k.element + " + ");
+      inOrderTraversal(k.right);
+    }
+  } 
+
+  // post order traversal 
+  public void postOrderTraversal()
+  {
+    postOrderTraversal(rootPoint);
+  }
+  private void postOrderTraversal(nodes k)
+  {
+    if (k != null)
+    {
+      postOrderTraversal(k.left);
+      postOrderTraversal(k.right);
+      // THIS IS TENTATIVE AS THIS IS JUST SOMETHING EASY TO DISTINGUISH WHERE SOMETHING IS HAVING AN OUTPUT.
+      System.out.print(k.element + " / ");
+    }
+  }
+}
+
+// originally splayTreeConfig was labeled splayTree because I made a silly mistake - corrected, and will adjust as needed.
+public class splayTree
+{
+  public static void main(String[] args)
+  {
+    // taking the input 
+    Scanner input = new Scanner(System.in);
+
+    // BEFORE GOING ANY FURTHER NEED TO UPDATE THE REMOVE TO BE DELETION/DELETE, AS WELL AS VERIFY THAT IT'S INSERTION, AND SEARCH
+  }
 }
