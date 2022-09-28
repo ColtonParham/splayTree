@@ -67,3 +67,6 @@ ADDITIONAL STUFF:
 might need to be able to seperate or trim out the additional L/R/RT when checking the value against the position.
 or could be a matter of the indexed tree point/node - might be able to sort without arithmetic, and base it purely off of logic base. 
 
+PROMPT LOG: 
+
+Might need to go through hell and test everything individually for each function to verify where it could appear.... once that's figured, all good! 

@@ -242,7 +242,7 @@ class splayTreeConfig{
     {
       return;
     }
-
+    
     splayAction(node);
     if ((node.left != null) && (node.right != null))
     {
@@ -399,12 +399,15 @@ public class splayTree
           break;
       }
 
-      // this will print out the tree or drive it a bit further - i think this might need a loop to work??? if it's supposed to be updating retroactively...
+      // Found that preOrder should be working fine, but is running into an issue of not showing R/L/RT, and needs to be able to distinguish correctly. 
       System.out.println("PreOrder: ");
       splayTree.preorderTraversal();
 
+      // prompt for continuing after each node is inserted/deleted/searched for 
       System.out.println("\nContinue? (Y/N) ");
+      // forcing next input 
       chr = input.next().charAt(0);
+      // verifying that input is compatible with the demand of the prompt
     } while (chr == 'Y' || chr == 'y');
   }
 }
