@@ -1,16 +1,12 @@
 // Colton Parham - CDP210001
 // Dr. Zhao, CS3345
-// splay tree project (Project 1)
+// Splay Tree project (Project 1)
 
 // Misc notes: Needs to be bottom up 
-// <Might not need to be emptied, or have that option, so i amy have done additional work for no reason.....> 
-// TENTATIVE ITEMS TO BE REMOVED: EmptyCheck, Count, ClearTree, postOrder, and inOrder - Might only need the preorder, but would be smart to email Dr. Z
-
 // scanner for taking keyboard input 
 import java.util.Scanner;
 
 // Class for the nodes 
-
 class nodes{
   nodes left, right, parentNode;
   int element;
@@ -348,7 +344,9 @@ class splayTreeConfig{
       // THIS IS TENTATIVE AS THIS IS JUST SOMETHING EASY TO DISTINGUISH WHERE SOMETHING IS HAVING AN OUTPUT.
       System.out.print(k.element + " - ");
       preorderTraversal(k.left); // might be worth to create a condition here to indicate whether left or right with a if statement with the proper k value. 
+      // System.out.print(k.element + "L"); - right idea, wrong execution
       preorderTraversal(k.right);
+      // System.out.print(k.element + "R"); 
     }
   }
 }
@@ -368,13 +366,14 @@ public class splayTree
     // choice for the input.... 
     char chr;
 
-    // do loop 
+    // do-while loop 
     do 
     {
       System.out.println("Select your option: ");
       System.out.println("1: Insert");
       System.out.println("2: Delete");
       System.out.println("3: Search");
+
       int select = input.nextInt();
       // switch statement to make it slightly easier to read...
       switch(select)
@@ -394,6 +393,7 @@ public class splayTree
           System.out.println("Enter int element to search for in the tree");
           System.out.println("results: " + splayTree.searchFunction(input.nextInt()));
           break;
+          // default for invalid selections 
         default: 
           System.out.println("Invalid option selected.");
           break;
