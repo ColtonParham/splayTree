@@ -47,18 +47,7 @@ class splayTreeConfig{
   {
     rootPoint = null;
   }
-  // function to verify that the tree is empty 
-  public boolean empty()
-  {
-    return rootPoint == null;
-  }
-  // function to clear out the splay tree 
-  public void clearTree()
-  {
-    rootPoint = null;
-    ct = 0;
-  }
-
+  
   // function to insert elements inside of the tree - INSERTION AS REQUIRED... 
   public void insertElement(int elem)
   {
@@ -300,9 +289,10 @@ class splayTreeConfig{
     ct--;
   }
 
-  // function to return the # of nodes counter
+  // function to return the # of nodes counter - used to keep track of the nodes in use....
   public int nodeQty()
   {
+    // returns the number of nodes in use....
     return ct;
   }
   
