@@ -3,6 +3,8 @@
 // splay tree project (Project 1)
 
 // Misc notes: Needs to be bottom up 
+// <Might not need to be emptied, or have that option, so i amy have done additional work for no reason.....> 
+// TENTATIVE ITEMS TO BE REMOVED: EmptyCheck, Count, ClearTree, postOrder, and inOrder - Might only need the preorder, but would be smart to email Dr. Z
 
 // scanner for taking keyboard input 
 import java.util.Scanner;
@@ -57,7 +59,7 @@ class splayTreeConfig{
     ct = 0;
   }
 
-  // function to insert elements inside of the tree 
+  // function to insert elements inside of the tree - INSERTION AS REQUIRED... 
   public void insertElement(int elem)
   {
     nodes r = rootPoint;
@@ -239,16 +241,17 @@ class splayTreeConfig{
     rootPoint = v;
   }
 
-  public void remove(int elem)
+  // delete function
+  public void delete(int elem)
   {
     // to be created locNode to locate the node 
     nodes node = locNode(elem);
     // remove function further 
-    remove(node);
+    delete(node);
   }
 
-  // remove node function
-  private void remove(nodes node)
+  // remove/delete node function
+  private void delete(nodes node)
   {
     if (node == null)
     {
@@ -354,40 +357,8 @@ class splayTreeConfig{
     {
       // THIS IS TENTATIVE AS THIS IS JUST SOMETHING EASY TO DISTINGUISH WHERE SOMETHING IS HAVING AN OUTPUT.
       System.out.print(k.element + " - ");
-      preorderTraversal(k.left);
+      preorderTraversal(k.left); // might be worth to create a condition here to indicate whether left or right with a if statement with the proper k value. 
       preorderTraversal(k.right);
-    }
-  }
-
-  // inOrderTraversal checking the correct subtree from the left <TENTATIVE> 
-  public void inOrderTraversal ()
-  {
-    inOrderTraversal(rootPoint);
-  }
-  private void inOrderTraversal(nodes k)
-  {
-    if (k != null)
-    {
-      inOrderTraversal(k.left);
-      // THIS IS TENTATIVE AS THIS IS JUST SOMETHING EASY TO DISTINGUISH WHERE SOMETHING IS HAVING AN OUTPUT.
-      System.out.print(k.element + " + ");
-      inOrderTraversal(k.right);
-    }
-  } 
-
-  // post order traversal 
-  public void postOrderTraversal()
-  {
-    postOrderTraversal(rootPoint);
-  }
-  private void postOrderTraversal(nodes k)
-  {
-    if (k != null)
-    {
-      postOrderTraversal(k.left);
-      postOrderTraversal(k.right);
-      // THIS IS TENTATIVE AS THIS IS JUST SOMETHING EASY TO DISTINGUISH WHERE SOMETHING IS HAVING AN OUTPUT.
-      System.out.print(k.element + " / ");
     }
   }
 }
@@ -399,7 +370,51 @@ public class splayTree
   {
     // taking the input 
     Scanner input = new Scanner(System.in);
-
+    // splay tree variable to be used 
+    splayTreeConfig splayTree = new splayTreeConfig();
+    System.out.println("Please select an option:\n");
+    // remove changed to delete function....
     // BEFORE GOING ANY FURTHER NEED TO UPDATE THE REMOVE TO BE DELETION/DELETE, AS WELL AS VERIFY THAT IT'S INSERTION, AND SEARCH
+    // choice for the input.... 
+    char chr;
+
+    // do loop 
+    do 
+    {
+      System.out.println("Select your option: ");
+      System.out.println("1: Insert");
+      System.out.println("2: Delete");
+      System.out.println("3: Search");
+      int select = input.nextInt();
+      // switch statement to make it slightly easier to read...
+      switch(select)
+      {
+        // insert option - calling the insert element function
+        case 1: 
+          System.out.println("Enter int element to insert in the node");
+          splayTree.insertElement(input.nextInt());
+          break;
+        // delete option - calling the delete function
+        case 2: 
+          System.out.println("Enter int element to delete in the tree");
+          splayTree.delete(input.nextInt());
+          break;
+        // search option - calling the search function within the tree
+        case 3: 
+          System.out.println("Enter int element to search for in the tree");
+          System.out.println("results: " + splayTree.searchFunction(input.nextInt()));
+          break;
+        default: 
+          System.out.println("Invalid option selected.");
+          break;
+      }
+
+      // this will print out the tree or drive it a bit further - i think this might need a loop to work??? if it's supposed to be updating retroactively...
+      System.out.println("PreOrder: ");
+      splayTree.preorderTraversal();
+
+      System.out.println("\nContinue? (Y/N) ");
+      chr = input.next().charAt(0);
+    } while (chr == 'Y' || chr == 'y');
   }
 }
