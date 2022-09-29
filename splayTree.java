@@ -342,11 +342,10 @@ class splayTreeConfig{
   {
     if (k != null)
     {
+      // no additional conditions needed 
       System.out.print(k.element + " - ");
-      preorderTraversal(k.left); // might be worth to create a condition here to indicate whether left or right with a if statement with the proper k value. 
-      // System.out.print(k.element + "L"); - right idea, wrong execution
+      preorderTraversal(k.left); 
       preorderTraversal(k.right);
-      // System.out.print(k.element + "R"); 
     }
   }
 }
