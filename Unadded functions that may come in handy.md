@@ -70,3 +70,11 @@ or could be a matter of the indexed tree point/node - might be able to sort with
 PROMPT LOG: 
 
 Might need to go through hell and test everything individually for each function to verify where it could appear.... once that's figured, all good! 
+
+Maybe in reference to GFG splay tree example, having the right justified value of the tree be directly correlated with the value if bigger when recurring on itself? <This might need a loop, but thats probably not the best idea since there is 
+already one for the input.>
+
+First value = RT
+Second value = L
+Third value = R <Needs to be of higher V>
+

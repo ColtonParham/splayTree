@@ -337,11 +337,11 @@ class splayTreeConfig{
   {
     preorderTraversal(rootPoint);
   }
+  // checking if not null and printing elements with left first then right respectively.
   private void preorderTraversal(nodes k)
   {
     if (k != null)
     {
-      // THIS IS TENTATIVE AS THIS IS JUST SOMETHING EASY TO DISTINGUISH WHERE SOMETHING IS HAVING AN OUTPUT.
       System.out.print(k.element + " - ");
       preorderTraversal(k.left); // might be worth to create a condition here to indicate whether left or right with a if statement with the proper k value. 
       // System.out.print(k.element + "L"); - right idea, wrong execution
@@ -410,4 +410,5 @@ public class splayTree
       // verifying that input is compatible with the demand of the prompt
     } while (chr == 'Y' || chr == 'y');
   }
+  
 }
