@@ -78,3 +78,6 @@ First value = RT
 Second value = L
 Third value = R <Needs to be of higher V>
 
+Element value needs to output that char and number, but since the element is code as an int, a reference might be needed.
+
+Turns out in the end we didn't need the RT/L/R values......

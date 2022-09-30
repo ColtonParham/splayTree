@@ -70,9 +70,11 @@ class splayTreeConfig{
     // apply to parent node
     r.parentNode = par;
 
+    // maybe set something here to output earlier instead of directly at the preorder?
     if (par == null)
     {
       rootPoint = r;
+      // adding R HERE DOES NOT WORK!
     }
     else if (elem > par.element)
     {
@@ -96,7 +98,7 @@ class splayTreeConfig{
       if ((child == null) || (par == null) || (par.right != child) || (child.parentNode != par))
       {
         // autofill screwed me <come back to this to finish reviewing notes> 
-        throw new RuntimeException("shit1");
+        throw new RuntimeException("ERROR1 CTPR");
       }
   
       // cont from here - error checking first , marked as shit to keep track where each error is and is distinguishable 
@@ -126,6 +128,7 @@ class splayTreeConfig{
       par.parentNode = child;
       par.right = child.right;
       child.left = par;
+      // System.out.print("R");
     }
     // END OF FUNCTION <this is here to more or less keep track where i am. >
 
@@ -136,7 +139,7 @@ class splayTreeConfig{
     if ((child == null) || (par == null) || (par.left != child) || (child.parentNode != par))
     {
       // autofill screwed me <come back to this to finish reviewing notes> 
-      throw new RuntimeException("shit2");
+      throw new RuntimeException("ERROR2 CTPL");
     }
 
 
@@ -311,10 +314,12 @@ class splayTreeConfig{
       {
         // if greater than the other element it will be updated to the right 
         v = v.right;
+        
       }
       else if (elem < v.element)
       {
         v = v.left;
+        
       }
       else if (elem == v.element)
       {
@@ -336,6 +341,7 @@ class splayTreeConfig{
   public void preorderTraversal()
   {
     preorderTraversal(rootPoint);
+    
   }
   // checking if not null and printing elements with left first then right respectively.
   private void preorderTraversal(nodes k)
@@ -359,13 +365,12 @@ public class splayTree
     Scanner input = new Scanner(System.in);
     // splay tree variable to be used 
     splayTreeConfig splayTree = new splayTreeConfig();
+    // option prompt
     System.out.println("Please select an option:\n");
-    // remove changed to delete function....
-    // BEFORE GOING ANY FURTHER NEED TO UPDATE THE REMOVE TO BE DELETION/DELETE, AS WELL AS VERIFY THAT IT'S INSERTION, AND SEARCH
     // choice for the input.... 
     char chr;
 
-    // do-while loop 
+    // do-while loop to display all of the options, as well it contains the function calls based in the selected 
     do 
     {
       System.out.println("Select your option: ");
@@ -385,6 +390,7 @@ public class splayTree
         // delete option - calling the delete function
         case 2: 
           System.out.println("Enter int element to delete in the tree");
+          // this will take the input for the value to be deleted
           splayTree.delete(input.nextInt());
           break;
         // search option - calling the search function within the tree
@@ -398,7 +404,7 @@ public class splayTree
           break;
       }
 
-      // Found that preOrder should be working fine, but is running into an issue of not showing R/L/RT, and needs to be able to distinguish correctly. 
+      // Found that preOrder should be working fine - misinterpretted instructions 
       System.out.println("PreOrder: ");
       splayTree.preorderTraversal();
 
@@ -407,7 +413,7 @@ public class splayTree
       // forcing next input 
       chr = input.next().charAt(0);
       // verifying that input is compatible with the demand of the prompt
-    } while (chr == 'Y' || chr == 'y');
+    } while (chr == 'y');
   }
   
 }
