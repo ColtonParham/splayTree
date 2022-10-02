@@ -3,7 +3,7 @@
 // Splay Tree project (Project 1)
 
 // <COME BACK TO REVIEW THIS IN THE MORNING!>
-
+// ALSO DO NOT FORGET TO TAKE A SCREENSHOT FOR THE DELETE FUNCTION! 
 // Misc notes: Needs to be bottom up 
 // scanner for taking keyboard input 
 import java.util.Scanner;
