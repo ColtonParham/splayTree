@@ -2,6 +2,8 @@
 // Dr. Zhao, CS3345
 // Splay Tree project (Project 1)
 
+// <COME BACK TO REVIEW THIS IN THE MORNING!>
+
 // Misc notes: Needs to be bottom up 
 // scanner for taking keyboard input 
 import java.util.Scanner;
@@ -316,6 +318,7 @@ class splayTreeConfig{
         v = v.right;
         
       }
+      // if the elem being passed through is less than the referenced element move the v value to the left <TENTATIVE> 
       else if (elem < v.element)
       {
         v = v.left;
@@ -340,16 +343,19 @@ class splayTreeConfig{
   // pre-order traversal 
   public void preorderTraversal()
   {
+    // calling with the rootPoint as the 
     preorderTraversal(rootPoint);
     
   }
   // checking if not null and printing elements with left first then right respectively.
   private void preorderTraversal(nodes k)
   {
+    // this function will recur on itself.
     if (k != null)
     {
       // no additional conditions needed 
       System.out.print(k.element + " - ");
+      // moves left then right 
       preorderTraversal(k.left); 
       preorderTraversal(k.right);
     }
