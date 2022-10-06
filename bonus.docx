@@ -8,7 +8,7 @@ class AVL
     }
 
   // new node function
-    stat nNode nodes(int data)
+    static nNode nodes(int data)
     {
       // data being associated with the key value
       Node node = new Node
@@ -17,7 +17,7 @@ class AVL
       return node
     }
 // rotate right
-    stat node rotateR(node xV)
+    static node rotateR(node xV)
     {
       Node yV = xV.left
       xV.left = yV.right
@@ -26,7 +26,7 @@ class AVL
     }
 
 // rotate left
-    stat node rotateL(node xV)
+    static node rotateL(node xV)
     {
       Node yV = xV.right
       xV.right = yV.left
@@ -34,7 +34,7 @@ class AVL
       return yV
     }
 
-    stat node splayAction(Node rootV, int keyVal)
+    static node splayAction(Node rootV, int keyVal)
     {
       if (rootV == null || rootV.keyVal == keyVal) then (return rootV)
       if (rootV.keyVal > keyVal) 
@@ -69,7 +69,7 @@ class AVL
       }
     }
 
-    stat Node searchVal(Node rootV, int keyVal)
+    static Node searchVal(Node rootV, int keyVal)
     {
       // search function
       return splayAction(rootV, keyVal)

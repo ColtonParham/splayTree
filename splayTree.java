@@ -2,10 +2,7 @@
 // Dr. Zhao, CS3345
 // Splay Tree project (Project 1)
 
-// <COME BACK TO REVIEW THIS IN THE MORNING!>
-// ALSO DO NOT FORGET TO TAKE A SCREENSHOT FOR THE DELETE FUNCTION! 
-// Misc notes: Needs to be bottom up 
-// scanner for taking keyboard input 
+// Scanner Library for input from keyboard
 import java.util.Scanner;
 
 // Class for the nodes 
@@ -22,7 +19,7 @@ class nodes{
     this.element = 0;
   }
 
-  // constructor for publicly viable vars/params
+  // constructor for publicly viable vars/params, or in consolidation, nodes.
   public nodes(int elem, nodes l, nodes r, nodes parent)
   {
     // invoking the constructed fields/vars 
@@ -55,7 +52,7 @@ class splayTreeConfig{
     while (r != null)
     {
       par = r;
-      // comparing the values being passed in <TENATIVE>
+      // comparing the values being passed in 
       if (elem > par.element)
       {
         r = r.right;
@@ -66,17 +63,16 @@ class splayTreeConfig{
       }
     }
 
+    // new nodes 
     r = new nodes();
     // root element 
     r.element = elem;
     // apply to parent node
     r.parentNode = par;
 
-    // maybe set something here to output earlier instead of directly at the preorder?
     if (par == null)
     {
       rootPoint = r;
-      // adding R HERE DOES NOT WORK!
     }
     else if (elem > par.element)
     {
@@ -86,7 +82,7 @@ class splayTreeConfig{
     {
       par.left = r;
     }
-    // calling splay action here <tenative until created but needs to be here> 
+    // calling splay action here 
     splayAction(r);
     // increment the count here 
     ct++;
@@ -167,7 +163,7 @@ class splayTreeConfig{
       child.right.parentNode = par;
     }
 
-    // <COME BACK TO THIS!> 
+    // child to parent, and parent to child
     child.parentNode = par.parentNode;
     par.parentNode = child;
     par.left = child.right;
@@ -247,7 +243,7 @@ class splayTreeConfig{
     {
       return;
     }
-    
+    // calling the splay action function
     splayAction(node);
     if ((node.left != null) && (node.right != null))
     {
@@ -403,8 +399,10 @@ public class splayTree
         case 3: 
           System.out.println("Enter int element to search for in the tree");
           System.out.println("results: " + splayTree.searchFunction(input.nextInt()));
+          // added to check if works? might not even need this! 
+          // System.out.println("PreOrder: ");
+          // splayTree.preorderTraversal();
           break;
-          // default for invalid selections 
         default: 
           System.out.println("Invalid option selected.");
           break;
@@ -418,7 +416,7 @@ public class splayTree
       System.out.println("\nContinue? (Y/N) ");
       // forcing next input 
       chr = input.next().charAt(0);
-      // verifying that input is compatible with the demand of the prompt
+      // verifying that input is compatible with the demand of the prompt anything else will be considered NO/N/n
     } while (chr == 'y');
   }
   
