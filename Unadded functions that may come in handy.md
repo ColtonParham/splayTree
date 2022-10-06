@@ -81,3 +81,26 @@ Third value = R <Needs to be of higher V>
 Element value needs to output that char and number, but since the element is code as an int, a reference might be needed.
 
 Turns out in the end we didn't need the RT/L/R values......
+
+
+
+  // print help to determine within if r/l/rt
+  private void printHelp(nodes ptr, String ind, boolean last)
+  {
+    if (ptr != null)
+    {
+      System.out.print(ind);
+    }
+    if (last)
+    {
+      System.out.print("R");
+    }
+    else 
+    {
+      System.out.print("L");
+    }
+
+    System.out.print(ptr.element);
+    printHelp(ptr, ind, false);
+    printHelp(ptr, ind, true);
+  }

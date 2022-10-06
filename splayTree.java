@@ -337,25 +337,29 @@ class splayTreeConfig{
   }
 
   // pre-order traversal 
-  public void preorderTraversal()
+  public void preorderTraversalU(nodes node, String suff)
   {
-    // calling with the rootPoint as the 
-    preorderTraversal(rootPoint);
-    
+    if (node == null)
+    {
+      return;
+    }
+    // applying the same rule as the original function, but adding the suff var to apply right after, and since there is no if condition, apply R/L in respective spots 
+    System.out.print(node.element + suff + " ");
+    // applies to left node
+    preorderTraversalU(node.left, "L");
+    // applies to right node
+    preorderTraversalU(node.right, "R");
   }
   // checking if not null and printing elements with left first then right respectively.
-  private void preorderTraversal(nodes k)
+  public void preorderTraversal()
   {
-    // this function will recur on itself.
-    if (k != null)
-    {
-      // no additional conditions needed 
-      System.out.print(k.element + " - ");
-      // moves left then right 
-      preorderTraversal(k.left); 
-      preorderTraversal(k.right);
-    }
+    // root charcter with root value
+    this.preorderTraversalU(this.rootPoint, "RT");
+    // printing a new line
+    System.out.println();
   }
+
+
 }
 
 // originally splayTreeConfig was labeled splayTree because I made a silly mistake - corrected, and will adjust as needed.
@@ -375,11 +379,13 @@ public class splayTree
     // do-while loop to display all of the options, as well it contains the function calls based in the selected 
     do 
     {
+      // list of options
       System.out.println("Select your option: ");
       System.out.println("1: Insert");
       System.out.println("2: Delete");
       System.out.println("3: Search");
 
+      // input task
       int select = input.nextInt();
       // switch statement to make it slightly easier to read...
       switch(select)
@@ -398,12 +404,11 @@ public class splayTree
         // search option - calling the search function within the tree
         case 3: 
           System.out.println("Enter int element to search for in the tree");
+          // grabbing the search result - produces t/f if the element is in the tree
           System.out.println("results: " + splayTree.searchFunction(input.nextInt()));
-          // added to check if works? might not even need this! 
-          // System.out.println("PreOrder: ");
-          // splayTree.preorderTraversal();
           break;
         default: 
+        // this will output the error for the invalid option
           System.out.println("Invalid option selected.");
           break;
       }
@@ -418,6 +423,8 @@ public class splayTree
       chr = input.next().charAt(0);
       // verifying that input is compatible with the demand of the prompt anything else will be considered NO/N/n
     } while (chr == 'y');
+    // closing out input 
+    input.close();
   }
   
 }
