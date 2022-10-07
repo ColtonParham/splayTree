@@ -1,5 +1,5 @@
 // Colton Parham - CDP210001
-// Dr. Zhao, CS3345
+// Dr. Zhao, CS3345.505
 // Splay Tree project (Project 1)
 
 // Scanner Library for input from keyboard
@@ -40,6 +40,7 @@ class splayTreeConfig{
   // constructor for setting the value of the rootPoint
   public splayTreeConfig()
   {
+    // by default setting the rootPoint to be of null value until updated otherwise
     rootPoint = null;
   }
   
@@ -92,10 +93,10 @@ class splayTreeConfig{
     // START OF FUNCTION
     public void childToParentRight(nodes child, nodes par)
     {
-      // changes from prior was changing left to right 
+      // setting up a condition to throw errors if program is not getting good node vals
       if ((child == null) || (par == null) || (par.right != child) || (child.parentNode != par))
       {
-        // autofill screwed me <come back to this to finish reviewing notes> 
+        //ERROR 2 CTPR = CHILD TO PARENT RIGHT - to indicate where the error might have occured
         throw new RuntimeException("ERROR1 CTPR");
       }
   
@@ -126,7 +127,6 @@ class splayTreeConfig{
       par.parentNode = child;
       par.right = child.right;
       child.left = par;
-      // System.out.print("R");
     }
     // END OF FUNCTION <this is here to more or less keep track where i am. >
 
@@ -134,9 +134,10 @@ class splayTreeConfig{
   //child to parent function to rotate the node <left>
   public void childToParentLeft(nodes child, nodes par)
   {
+    // setting up a condition to throw errors if program is not getting good node vals
     if ((child == null) || (par == null) || (par.left != child) || (child.parentNode != par))
     {
-      // autofill screwed me <come back to this to finish reviewing notes> 
+      //ERROR 2 CTPL = CHILD TO PARENT LEFT - to indicate where the error might have occured
       throw new RuntimeException("ERROR2 CTPL");
     }
 
@@ -314,7 +315,7 @@ class splayTreeConfig{
         v = v.right;
         
       }
-      // if the elem being passed through is less than the referenced element move the v value to the left <TENTATIVE> 
+      // if the elem being passed through is less than the referenced element move the v value to the left 
       else if (elem < v.element)
       {
         v = v.left;
@@ -336,9 +337,10 @@ class splayTreeConfig{
     return null;
   }
 
-  // pre-order traversal 
+  // pre-order traversal U(tility) function - used for setting up character assignment for kR/KL
   public void preorderTraversalU(nodes node, String suff)
   {
+    // recurs on itself.
     if (node == null)
     {
       return;
@@ -353,7 +355,7 @@ class splayTreeConfig{
   // checking if not null and printing elements with left first then right respectively.
   public void preorderTraversal()
   {
-    // root charcter with root value
+    // root charcter with root value kRT
     this.preorderTraversalU(this.rootPoint, "RT");
     // printing a new line
     System.out.println();
@@ -413,7 +415,7 @@ public class splayTree
           break;
       }
 
-      // Found that preOrder should be working fine - misinterpretted instructions 
+      // Preorder prompt message, and display function
       System.out.println("PreOrder: ");
       splayTree.preorderTraversal();
 
